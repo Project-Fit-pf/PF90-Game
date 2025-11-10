@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,9 @@
             box-sizing: border-box;
             font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #2e7d32, #4caf50, #81c784);
+            background: linear-gradient(to bottom, #0d1b6b, #1a237e, #283593, #3949ab, #5c6bc0, #dd95ff);
             color: white;
             min-height: 100vh;
             padding: 20px;
@@ -21,81 +22,231 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         .container {
             width: 100%;
             max-width: 700px;
             margin: 0 auto;
             text-align: center;
         }
-        
+
+        /* 用户信息显示 */
+        .user-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            font-size: 14px;
+        }
+
+        #change-user {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background: #FFD700;
+            color: #3949ab;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #change-user:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+
+        /* 用户选择模态框 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #3949ab, #526fff);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 300px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #FFD700;
+            font-size: 24px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            text-align: center;
+        }
+
+        .modal-content input:focus {
+            outline: none;
+            border-color: #FFA500;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #confirm-user {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3949ab;
+        }
+
+        #confirm-user:hover {
+            background: linear-gradient(135deg, #FFA500, #FF8C00);
+            transform: translateY(-2px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         header {
             margin-bottom: 20px;
         }
-        
+
         h1 {
             font-size: 32px;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
         .subtitle {
             font-size: 16px;
             opacity: 0.9;
+            color: #e0e0e0;
         }
-        
+
         .game-info {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 15px;
             margin-bottom: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .current-position {
             font-size: 18px;
             margin-bottom: 10px;
+            color: #FFD700;
         }
-        
+
         .current-task {
             font-size: 16px;
             font-weight: bold;
             margin-top: 10px;
+            color: white;
         }
-        
+
         .weight-input-container {
             margin-top: 10px;
             display: none;
         }
-        
+
         .weight-input {
             padding: 8px 12px;
-            border: 2px solid #4CAF50;
+            border: 2px solid #FFD700;
             border-radius: 8px;
             font-size: 16px;
             width: 120px;
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
+            color: #333;
         }
-        
+
         .save-weight-btn {
             margin-left: 10px;
             padding: 8px 15px;
-            background: #4CAF50;
-            color: white;
+            background: #FFD700;
+            color: #3949ab;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
-        
+
+        .save-weight-btn:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+
         .weight-display {
             margin-top: 5px;
             font-size: 14px;
             color: #FFD700;
+            font-weight: bold;
         }
-        
+
         .board-container {
             position: relative;
             width: 100%;
@@ -103,13 +254,14 @@
             max-height: 800px;
             overflow-y: auto;
             border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .game-board {
             width: 100%;
             min-height: 800px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -118,7 +270,7 @@
             padding: 15px;
             position: relative;
         }
-        
+
         .cell {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 8px;
@@ -134,90 +286,95 @@
             text-align: center;
             padding: 10px;
             min-height: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .cell.start {
-            background: rgba(76, 175, 80, 0.7);
+            background: rgba(57, 73, 171, 0.7);
         }
-        
+
         .cell.finish {
-            background: rgba(255, 87, 34, 0.7);
+            background: rgba(255, 69, 0, 0.7);
         }
-        
+
         .cell.current {
-            background: rgba(255, 193, 7, 0.7);
-            box-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
+            background: rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             transform: scale(1.05);
+            border: 2px solid #FFD700;
         }
-        
+
         .cell.completed {
-            background: rgba(33, 150, 243, 0.3);
+            background: rgba(57, 73, 171, 0.4);
         }
-        
+
         .cell.week-start {
-            background: rgba(56, 142, 60, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(82, 111, 255, 0.7);
+            border: 2px solid rgba(255, 215, 0, 0.5);
         }
-        
+
         .cell.completed.week-start {
-            background: rgba(56, 142, 60, 0.5);
+            background: rgba(82, 111, 255, 0.5);
         }
-        
+
         .cell-number {
             font-size: 12px;
             margin-bottom: 4px;
             font-weight: bold;
+            color: #FFD700;
         }
-        
+
         .cell-content {
             font-size: 12px;
             line-height: 1.3;
         }
-        
+
         .cell-weight {
             font-size: 10px;
             color: #FFD700;
             margin-top: 2px;
             font-weight: normal;
         }
-        
+
         .week-label {
             position: absolute;
             top: 5px;
             left: 5px;
             font-size: 10px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 215, 0, 0.3);
             border-radius: 10px;
             padding: 2px 6px;
+            color: #FFD700;
         }
-        
+
         .player {
             width: 40px;
             height: 40px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFC107" stroke="%23FF9800" stroke-width="3"/><circle cx="35" cy="40" r="5" fill="%23333"/><circle cx="65" cy="40" r="5" fill="%23333"/><path d="M 30 65 Q 50 80 70 65" stroke="%23333" stroke-width="3" fill="none"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700" stroke="%23FFA500" stroke-width="3"/><circle cx="35" cy="40" r="5" fill="%233949ab"/><circle cx="65" cy="40" r="5" fill="%233949ab"/><path d="M 30 65 Q 50 80 70 65" stroke="%233949ab" stroke-width="3" fill="none"/></svg>');
             background-size: contain;
             position: absolute;
-            box-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             transition: all 0.5s ease;
             z-index: 10;
         }
-        
+
         .controls {
             margin-top: 20px;
             position: sticky;
             bottom: 20px;
-            background: rgba(46, 125, 50, 0.9);
+            background: rgba(57, 73, 171, 0.9);
             padding: 15px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             gap: 10px;
             justify-content: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
-        
+
         .move-button {
-            background: #FF5722;
-            color: white;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3949ab;
             border: none;
             padding: 15px 25px;
             border-radius: 50px;
@@ -225,75 +382,82 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             flex: 1;
         }
-        
+
         .back-button {
-            background: #2196F3;
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            border: none;
+            border: 2px solid #FFD700;
             padding: 15px 25px;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             flex: 1;
         }
-        
+
         .move-button:hover {
-            background: #E64A19;
+            background: linear-gradient(135deg, #FFA500, #FF8C00);
             transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4);
         }
-        
+
         .back-button:hover {
-            background: #1976D2;
+            background: rgba(255, 215, 0, 0.2);
             transform: translateY(-3px);
         }
-        
-        .move-button:active, .back-button:active {
+
+        .move-button:active,
+        .back-button:active {
             transform: translateY(1px);
         }
-        
-        .move-button:disabled, .back-button:disabled {
-            background: #ccc;
+
+        .move-button:disabled,
+        .back-button:disabled {
+            background: #666;
+            color: #999;
             cursor: not-allowed;
             transform: none;
+            border: none;
         }
-        
+
         .week-indicator {
             margin-top: 15px;
             font-size: 16px;
             font-weight: bold;
+            color: #FFD700;
         }
-        
+
         .save-notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(76, 175, 80, 0.9);
-            color: white;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3949ab;
             padding: 10px 15px;
             border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 1000;
+            font-weight: bold;
         }
-        
+
         .save-notification.show {
             opacity: 1;
         }
-        
+
         .action-buttons {
             display: flex;
             gap: 10px;
             margin-top: 10px;
             justify-content: center;
         }
-        
+
         #reset-button {
             padding: 8px 15px;
             background: #ff4444;
@@ -303,65 +467,85 @@
             cursor: pointer;
             font-size: 14px;
             flex: 1;
+            transition: all 0.3s ease;
         }
-        
+
+        #reset-button:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
         .board-container::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         .board-container::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
         }
-        
+
         .board-container::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 215, 0, 0.5);
             border-radius: 4px;
         }
-        
+
         .board-container::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 215, 0, 0.7);
         }
-        
+
         @media (max-width: 768px) {
             .game-board {
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(23, 1fr);
                 min-height: 1200px;
             }
-            
+
             .board-container {
                 max-height: 600px;
             }
-            
+
             h1 {
                 font-size: 26px;
             }
-            
+
             .cell {
                 min-height: 70px;
             }
-            
+
             .cell-content {
                 font-size: 11px;
             }
-            
+
             .controls {
                 flex-direction: column;
             }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .user-info {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: center;
+            }
         }
-        
+
         @media (max-width: 480px) {
             .game-board {
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: repeat(35, 1fr);
                 min-height: 1400px;
             }
-            
+
             .board-container {
                 max-height: 500px;
             }
-            
+
             .cell {
                 min-height: 65px;
                 padding: 8px;
@@ -369,47 +553,287 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- 用户选择界面 -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <h3>🎯 欢迎使用PF90健身挑战</h3>
+            <input type="text" id="username-input" placeholder="请输入您的用户名" maxlength="20">
+            <div class="modal-buttons">
+                <button id="confirm-user">开始挑战</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <header>
-            <h1>PF90 Game</h1>
-            <p class="subtitle">完成90天健身挑战！</p>
-        </header>
-        
+        <!-- 用户信息显示 -->
+        <div class="user-info" style="display: none;">
+            <span id="current-user">用户: 加载中...</span>
+            <button id="change-user">切换用户</button>
+        </div>
+
+        <div class="logo-container">
+            <div class="logo">
+                <img src="logo.png" alt="PF90 Logo">
+            </div>
+            <header>
+                <h1>PF90 Game</h1>
+                <p class="subtitle">完成90天健身挑战！</p>
+            </header>
+        </div>
+
         <div class="game-info">
             <div class="current-position">当前位置: <span id="position">1</span>/69</div>
             <div class="current-task" id="current-task">Push Weight ____kg</div>
             <div id="weight-display" class="weight-display"></div>
             <div class="weight-input-container" id="weight-input-container">
                 <input type="number" class="weight-input" id="weight-input" placeholder="输入重量" min="0" max="500">
-                <button class="save-weight-btn" id="save-weight-btn">保存</button>
+                <button class="save-weight-btn" id="save-weight-btn">保存重量</button>
             </div>
             <div class="week-indicator" id="week-indicator">第1周</div>
             <div class="action-buttons">
                 <button id="reset-button">重置进度</button>
             </div>
         </div>
-        
+
         <div class="board-container">
             <div class="game-board" id="game-board">
                 <!-- 棋盘格子将通过JavaScript动态生成 -->
             </div>
             <div class="player" id="player"></div>
         </div>
-        
+
         <div class="controls">
             <button class="back-button" id="back-button">回到上一格</button>
             <button class="move-button" id="move-button">完成今日任务</button>
         </div>
-        
+
         <div class="save-notification" id="save-notification">进度已自动保存</div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFuLXShspM2i1OlP12Drpc-tU0cYZ13F0",
+            authDomain: "pf-90-80033.firebaseapp.com",
+            projectId: "pf-90-80033",
+            storageBucket: "pf-90-80033.firebasestorage.app",
+            messagingSenderId: "1632448471",
+            appId: "1:1632448471:web:af17ddc170123cfc40a592"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 将Firebase函数暴露给全局作用域
+        window.firebaseApp = app;
+        window.firestore = db;
+        window.firebaseDoc = doc;
+        window.firebaseSetDoc = setDoc;
+        window.firebaseGetDoc = getDoc;
+        window.firebaseServerTimestamp = serverTimestamp;
+
+        console.log('Firebase初始化完成');
+    </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // 用户管理类
+        class UserManager {
+            constructor() {
+                this.currentUser = null;
+            }
+
+            // 初始化用户系统
+            async init() {
+                await this.loadUser();
+                if (!this.currentUser) {
+                    await this.showUserModal();
+                } else {
+                    this.hideUserModal();
+                    this.updateUI();
+                    // 加载用户数据
+                    const userData = await this.getUserGameData();
+                    if (userData) {
+                        return userData;
+                    }
+                }
+                return null;
+            }
+
+            // 加载用户信息
+            async loadUser() {
+                const savedUser = localStorage.getItem('pf90-currentUser');
+                if (savedUser) {
+                    this.currentUser = JSON.parse(savedUser);
+                    return true;
+                }
+                return false;
+            }
+
+            // 显示用户选择模态框
+            async showUserModal() {
+                return new Promise((resolve) => {
+                    const modal = document.getElementById('user-modal');
+                    const input = document.getElementById('username-input');
+                    const confirmBtn = document.getElementById('confirm-user');
+
+                    modal.style.display = 'flex';
+                    input.focus();
+
+                    const handleConfirm = () => {
+                        const userName = input.value.trim() || '健身勇士';
+                        if (userName) {
+                            this.createUser(userName);
+                            modal.style.display = 'none';
+                            this.updateUI();
+                            resolve();
+                        }
+                    };
+
+                    confirmBtn.onclick = handleConfirm;
+                    input.onkeypress = (e) => {
+                        if (e.key === 'Enter') handleConfirm();
+                    };
+                });
+            }
+
+            // 隐藏用户模态框
+            hideUserModal() {
+                const modal = document.getElementById('user-modal');
+                modal.style.display = 'none';
+            }
+
+            // 创建新用户
+            createUser(userName) {
+                this.currentUser = {
+                    id: this.generateUserId(),
+                    name: userName,
+                    createdAt: new Date().toISOString()
+                };
+
+                localStorage.setItem('pf90-currentUser', JSON.stringify(this.currentUser));
+                this.saveUserToFirebase();
+            }
+
+            // 生成用户ID
+            generateUserId() {
+                return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            }
+
+            // 更新UI显示
+            updateUI() {
+                const userElement = document.getElementById('current-user');
+                const userInfo = document.querySelector('.user-info');
+
+                if (userElement && this.currentUser) {
+                    userElement.textContent = `玩家: ${this.currentUser.name}`;
+                    userInfo.style.display = 'block';
+                }
+            }
+
+            // 切换用户
+            async switchUser() {
+                if (confirm('确定要切换用户吗？当前进度将会保存。')) {
+                    // 先保存当前进度
+                    if (window.currentPosition && window.weights) {
+                        await window.saveGameState();
+                    }
+
+                    // 清除用户数据
+                    localStorage.removeItem('pf90-currentUser');
+                    localStorage.removeItem('pf90-game-state');
+                    this.currentUser = null;
+
+                    // 重新显示用户选择
+                    await this.showUserModal();
+
+                    // 重新加载页面
+                    location.reload();
+                }
+            }
+
+            // 保存用户数据到Firebase
+            async saveUserToFirebase() {
+                if (!this.currentUser) return;
+
+                const userData = {
+                    ...this.currentUser,
+                    lastActive: new Date().toISOString(),
+                    userAgent: navigator.userAgent
+                };
+
+                try {
+                    // 使用用户名作为文档ID，便于查看
+                    await window.firebaseSetDoc(
+                        window.firebaseDoc(window.firestore, 'users', this.currentUser.name),
+                        userData,
+                        { merge: true }
+                    );
+                    console.log('用户数据保存到Firebase成功');
+                } catch (error) {
+                    console.error('保存用户数据失败:', error);
+                }
+            }
+
+            // 获取用户游戏数据
+            async getUserGameData() {
+                if (!this.currentUser) return null;
+
+                try {
+                    // 使用用户名作为文档ID来查找
+                    const docRef = window.firebaseDoc(window.firestore, 'userProgress', this.currentUser.name);
+                    const docSnap = await window.firebaseGetDoc(docRef);
+                    return docSnap.exists() ? docSnap.data() : null;
+                } catch (error) {
+                    console.error('获取用户数据失败:', error);
+                    return null;
+                }
+            }
+
+            // 保存游戏数据到Firebase
+            async saveGameData(gameState) {
+                if (!this.currentUser) return;
+
+                const gameData = {
+                    userId: this.currentUser.id,
+                    userName: this.currentUser.name,
+                    ...gameState,
+                    updatedAt: window.firebaseServerTimestamp()
+                };
+
+                try {
+                    // 使用用户名作为文档ID
+                    await window.firebaseSetDoc(
+                        window.firebaseDoc(window.firestore, 'userProgress', this.currentUser.name),
+                        gameData,
+                        { merge: true }
+                    );
+                    console.log('游戏数据保存到Firebase成功');
+                    return true;
+                } catch (error) {
+                    console.error('保存游戏数据失败:', error);
+                    return false;
+                }
+            }
+            // 获取当前用户
+            getCurrentUser() {
+                return this.currentUser;
+            }
+        }
+
+        // 创建用户管理器实例
+        const userManager = new UserManager();
+
+        document.addEventListener('DOMContentLoaded', async function () {
             // 游戏配置
             const totalCells = 69;
-            
+
             // 定义每周的训练内容
             const weeklyTasks = [
                 "Push Weight",
@@ -419,7 +843,7 @@
                 "Leg",
                 "Cardio 45mins"
             ];
-            
+
             // 第5周开始Cardio变为50分钟
             const weeklyTasksWeek5 = [
                 "Push Weight",
@@ -429,124 +853,142 @@
                 "Leg",
                 "Cardio 50mins"
             ];
-            
+
             // 第12周最后三天的训练内容
             const week12Tasks = [
                 "Push 50mins",
                 "Pull 50mins",
                 "Leg 50mins"
             ];
-            
-            // 从本地存储加载游戏状态
-            let gameState = JSON.parse(localStorage.getItem('pf90-game-state')) || {
-                currentPosition: 1,
-                gameOver: false,
-                startDate: new Date().toISOString(),
-                lastUpdate: new Date().toISOString(),
-                weights: {} // 存储每个格子的重量记录
-            };
-            
-            let currentPosition = gameState.currentPosition;
-            let gameOver = gameState.gameOver;
-            let weights = gameState.weights || {};
-            
+
+            // 游戏状态
+            let currentPosition = 1;
+            let gameOver = false;
+            let weights = {};
+
+            // 初始化用户系统并获取用户数据
+            const userData = await userManager.init();
+
+            // 设置切换用户按钮事件
+            document.getElementById('change-user').addEventListener('click', function () {
+                userManager.switchUser();
+            });
+
             // 初始化游戏
-            initGame();
-            
+            await initGame(userData);
+
             // 为移动按钮添加事件监听
-            document.getElementById('move-button').addEventListener('click', function() {
+            document.getElementById('move-button').addEventListener('click', function () {
                 if (!gameOver) {
                     movePlayer();
                 }
             });
-            
+
             // 回到上一格按钮事件
-            document.getElementById('back-button').addEventListener('click', function() {
+            document.getElementById('back-button').addEventListener('click', function () {
                 if (currentPosition > 1) {
                     moveBack();
                 }
             });
-            
+
             // 重置按钮事件
-            document.getElementById('reset-button').addEventListener('click', function() {
+            document.getElementById('reset-button').addEventListener('click', function () {
                 if (confirm('确定要重置所有进度吗？此操作不可撤销！')) {
                     resetGame();
                 }
             });
-            
+
             // 保存重量按钮事件
-            document.getElementById('save-weight-btn').addEventListener('click', function() {
+            document.getElementById('save-weight-btn').addEventListener('click', function () {
                 saveWeight();
             });
-            
+
             // 输入框回车键事件
-            document.getElementById('weight-input').addEventListener('keypress', function(e) {
+            document.getElementById('weight-input').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     saveWeight();
                 }
             });
-            
+
             // 初始化游戏
-            function initGame() {
+            async function initGame(userData = null) {
+                // 如果有用户数据，使用用户数据
+                if (userData) {
+                    currentPosition = userData.currentPosition || 1;
+                    weights = userData.weights || {};
+                    gameOver = currentPosition >= totalCells;
+                } else {
+                    // 否则使用本地存储数据
+                    let gameState = JSON.parse(localStorage.getItem('pf90-game-state')) || {
+                        currentPosition: 1,
+                        gameOver: false,
+                        weights: {}
+                    };
+
+                    currentPosition = gameState.currentPosition;
+                    gameOver = gameState.gameOver;
+                    weights = gameState.weights || {};
+                }
+
                 // 生成棋盘
                 generateBoard();
-                
+
                 // 放置玩家
                 placePlayer();
-                
+
                 // 更新任务显示
                 updateTaskDisplay();
-                
+
                 // 更新按钮状态
                 updateButtonState();
-                
+
                 // 更新重量显示
                 updateWeightDisplay();
             }
-            
+
             // 保存重量
-            function saveWeight() {
+            async function saveWeight() {
                 const weightInput = document.getElementById('weight-input');
                 const weight = weightInput.value.trim();
-                
+
                 if (weight === '') {
                     alert('请输入重量！');
                     return;
                 }
-                
+
                 if (parseFloat(weight) <= 0) {
                     alert('请输入有效的重量！');
                     return;
                 }
-                
+
                 // 保存重量到当前格子
                 weights[currentPosition] = weight + 'kg';
-                
+
                 // 保存游戏状态
-                saveGameState();
-                
+                await saveGameState();
+
                 // 更新显示
                 updateWeightDisplay();
-                
+
                 // 重新生成棋盘以更新格子内容
                 generateBoard();
                 placePlayer();
-                
+
                 // 隐藏输入框
                 document.getElementById('weight-input-container').style.display = 'none';
-                
+
                 // 清空输入框
                 weightInput.value = '';
-                
+
                 // 显示成功消息
                 showSaveNotification('重量已保存！');
             }
-            
+
             // 更新重量显示
             function updateWeightDisplay() {
                 const weightDisplay = document.getElementById('weight-display');
                 const currentWeight = weights[currentPosition];
-                
+
                 if (currentWeight) {
                     weightDisplay.textContent = `当前重量: ${currentWeight}`;
                     weightDisplay.style.display = 'block';
@@ -554,25 +996,33 @@
                     weightDisplay.style.display = 'none';
                 }
             }
-            
+
             // 保存游戏状态
-            function saveGameState() {
+            async function saveGameState() {
                 const gameState = {
                     currentPosition: currentPosition,
                     gameOver: gameOver,
                     weights: weights,
-                    startDate: localStorage.getItem('pf90-game-state') ? 
-                        JSON.parse(localStorage.getItem('pf90-game-state')).startDate : 
+                    startDate: localStorage.getItem('pf90-game-state') ?
+                        JSON.parse(localStorage.getItem('pf90-game-state')).startDate :
                         new Date().toISOString(),
                     lastUpdate: new Date().toISOString()
                 };
-                
+
+                // 保存到本地存储
                 localStorage.setItem('pf90-game-state', JSON.stringify(gameState));
-                
+
+                // 保存到Firebase
+                const firebaseSuccess = await userManager.saveGameData(gameState);
+
                 // 显示保存提示
-                showSaveNotification('进度已自动保存');
+                if (firebaseSuccess) {
+                    showSaveNotification('进度已云端保存');
+                } else {
+                    showSaveNotification('进度已本地保存');
+                }
             }
-            
+
             // 显示保存提示
             function showSaveNotification(message) {
                 const notification = document.getElementById('save-notification');
@@ -582,26 +1032,26 @@
                     notification.classList.remove('show');
                 }, 2000);
             }
-            
+
             // 回到上一格
-            function moveBack() {
+            async function moveBack() {
                 if (currentPosition <= 1) return;
-                
+
                 currentPosition--;
                 gameOver = false;
-                
+
                 // 更新玩家位置
                 placePlayer();
-                
+
                 // 更新任务显示
                 updateTaskDisplay();
-                
+
                 // 保存游戏状态
-                saveGameState();
-                
+                await saveGameState();
+
                 // 更新按钮状态
                 updateButtonState();
-                
+
                 // 添加动画效果
                 const player = document.getElementById('player');
                 player.style.transform = 'translateX(-10px)';
@@ -609,22 +1059,22 @@
                     player.style.transform = 'translateX(0)';
                 }, 300);
             }
-            
+
             // 重置游戏
-            function resetGame() {
+            async function resetGame() {
                 currentPosition = 1;
                 gameOver = false;
                 weights = {};
                 localStorage.removeItem('pf90-game-state');
-                initGame();
-                saveGameState();
+                await initGame();
+                await saveGameState();
             }
-            
+
             // 更新按钮状态
             function updateButtonState() {
                 const moveButton = document.getElementById('move-button');
                 const backButton = document.getElementById('back-button');
-                
+
                 if (gameOver) {
                     moveButton.disabled = true;
                     moveButton.textContent = '挑战完成！';
@@ -632,21 +1082,21 @@
                     moveButton.disabled = false;
                     moveButton.textContent = '完成今日任务';
                 }
-                
+
                 // 回到上一格按钮状态
                 backButton.disabled = currentPosition <= 1;
             }
-            
+
             // 生成棋盘
             function generateBoard() {
                 const board = document.getElementById('game-board');
                 board.innerHTML = '';
-                
+
                 // 按周排列棋盘
                 for (let week = 1; week <= 12; week++) {
                     for (let day = 0; day < 6; day++) {
                         const cellNumber = (week - 1) * 6 + day + 1;
-                        
+
                         // 只生成1-69的格子
                         if (cellNumber > totalCells) {
                             // 添加空单元格占位
@@ -655,11 +1105,11 @@
                             board.appendChild(emptyCell);
                             continue;
                         }
-                        
+
                         const cell = document.createElement('div');
                         cell.className = 'cell';
                         cell.id = `cell-${cellNumber}`;
-                        
+
                         // 添加周标签
                         if (day === 0) {
                             const weekLabel = document.createElement('div');
@@ -667,20 +1117,20 @@
                             weekLabel.textContent = `W${week}`;
                             cell.appendChild(weekLabel);
                         }
-                        
+
                         // 添加格子编号
                         const cellNumberElement = document.createElement('div');
                         cellNumberElement.className = 'cell-number';
                         cellNumberElement.textContent = cellNumber;
                         cell.appendChild(cellNumberElement);
-                        
+
                         // 添加格子内容
                         const cellContent = document.createElement('div');
                         cellContent.className = 'cell-content';
-                        
+
                         const baseContent = getCellContent(cellNumber);
                         const cellWeight = weights[cellNumber];
-                        
+
                         if (baseContent.includes('Push Weight')) {
                             if (cellWeight) {
                                 cellContent.textContent = `Push Weight`;
@@ -695,34 +1145,34 @@
                         } else {
                             cellContent.textContent = baseContent;
                         }
-                        
+
                         cell.appendChild(cellContent);
-                        
+
                         // 标记特殊格子
                         if (cellNumber === 1) {
                             cell.classList.add('start');
                         } else if (cellNumber === totalCells) {
                             cell.classList.add('finish');
                         }
-                        
+
                         // 标记每周第一天
                         if (day === 0) {
                             cell.classList.add('week-start');
                         }
-                        
+
                         board.appendChild(cell);
                     }
                 }
             }
-            
+
             // 获取格子内容
             function getCellContent(cellNumber) {
                 // 计算当前是第几周
                 const week = Math.ceil(cellNumber / 6);
-                
+
                 // 计算在当前周的第几天
                 const dayInWeek = (cellNumber - 1) % 6;
-                
+
                 // 第12周的特殊处理
                 if (week === 12) {
                     if (cellNumber <= 66) {
@@ -733,26 +1183,26 @@
                         return week12Tasks[cellNumber - 67];
                     }
                 }
-                
+
                 // 第5周及以后使用新的训练内容
                 if (week >= 5) {
                     return weeklyTasksWeek5[dayInWeek];
                 }
-                
+
                 // 前4周使用基础训练内容
                 return weeklyTasks[dayInWeek];
             }
-            
+
             // 放置玩家
             function placePlayer() {
                 const player = document.getElementById('player');
                 const cell = document.getElementById(`cell-${currentPosition}`);
-                
+
                 // 清除之前的位置标记
                 document.querySelectorAll('.cell.current').forEach(cell => {
                     cell.classList.remove('current');
                 });
-                
+
                 // 标记已完成的任务
                 for (let i = 1; i < currentPosition; i++) {
                     const completedCell = document.getElementById(`cell-${i}`);
@@ -760,56 +1210,56 @@
                         completedCell.classList.add('completed');
                     }
                 }
-                
+
                 if (cell) {
                     const cellRect = cell.getBoundingClientRect();
                     const boardRect = document.getElementById('game-board').getBoundingClientRect();
-                    
-                    player.style.left = `${cellRect.left + cellRect.width/2 - boardRect.left - 20}px`;
-                    player.style.top = `${cellRect.top + cellRect.height/2 - boardRect.top - 20}px`;
-                    
+
+                    player.style.left = `${cellRect.left + cellRect.width / 2 - boardRect.left - 20}px`;
+                    player.style.top = `${cellRect.top + cellRect.height / 2 - boardRect.top - 20}px`;
+
                     // 标记当前位置
                     cell.classList.add('current');
-                    
+
                     // 自动滚动到当前单元格
                     cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-                
+
                 updatePositionDisplay();
             }
-            
+
             // 移动玩家
-            function movePlayer() {
+            async function movePlayer() {
                 if (currentPosition >= totalCells) {
                     gameOver = true;
                     document.getElementById('move-button').disabled = true;
                     document.getElementById('current-task').textContent = "恭喜！您已完成PF90挑战！";
-                    saveGameState();
+                    await saveGameState();
                     return;
                 }
-                
+
                 // 前进一格
                 currentPosition++;
-                
+
                 // 更新玩家位置
                 placePlayer();
-                
+
                 // 添加跳跃动画
                 const player = document.getElementById('player');
                 player.style.transform = 'translateY(-15px)';
                 setTimeout(() => {
                     player.style.transform = 'translateY(0)';
                 }, 250);
-                
+
                 // 更新任务显示
                 updateTaskDisplay();
-                
+
                 // 保存游戏状态
-                saveGameState();
-                
+                await saveGameState();
+
                 // 更新按钮状态
                 updateButtonState();
-                
+
                 // 检查是否到达终点
                 if (currentPosition === totalCells) {
                     setTimeout(() => {
@@ -820,21 +1270,21 @@
                     }, 600);
                 }
             }
-            
+
             // 更新位置显示
             function updatePositionDisplay() {
                 document.getElementById('position').textContent = currentPosition;
-                
+
                 // 更新周指示器
                 const week = Math.ceil(currentPosition / 6);
                 document.getElementById('week-indicator').textContent = `第${week}周`;
             }
-            
+
             // 更新任务显示
             function updateTaskDisplay() {
                 const currentTask = getCellContent(currentPosition);
                 let displayText = currentTask;
-                
+
                 // 如果是Push Weight任务且有重量记录
                 if (currentTask.includes('Push Weight')) {
                     const currentWeight = weights[currentPosition];
@@ -844,9 +1294,9 @@
                         displayText = 'Push Weight ____kg';
                     }
                 }
-                
+
                 document.getElementById('current-task').textContent = displayText;
-                
+
                 // 如果是Push Weight任务，显示输入框
                 const weightInputContainer = document.getElementById('weight-input-container');
                 if (currentTask.includes('Push Weight') && !weights[currentPosition]) {
@@ -855,11 +1305,12 @@
                 } else {
                     weightInputContainer.style.display = 'none';
                 }
-                
+
                 // 更新重量显示
                 updateWeightDisplay();
             }
         });
     </script>
 </body>
+
 </html>
